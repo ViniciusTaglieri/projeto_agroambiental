@@ -1,0 +1,166 @@
+<?php
+require_once("classes/conexao.php");
+require_once("classes/ppra.php");
+$id = $_GET['id'];
+$objeto = new ppra();
+$resultado = $objeto->selecionarPpraWhere($id);
+foreach ($resultado as $registro) {
+}
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agroambiental</title>
+    <!--JS-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="img/favicon.png" />
+
+    <!--Links do Css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="bg-body">
+    <?php require_once('nav_trab.php'); ?>
+
+    <section class="container mt-5">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <form action="update_ppra.php" method="POST" class="formulario">
+                            <h2 class="text-center py-4">Alterar Detalhe da Função</h2>
+                            <input type="hidden" name="id" value="<?=$registro->id?>">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="controle" placeholder="Digite o setor" maxlength="140" pattern="[A-Za-z0-9\ w]{0,140}" required value="<?=$registro->controle?>">
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Deverá conter até 140 caracteres</div>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="local" required value="<?$registro->controle?>">
+                                    <option value="" selected disabled>Selecione um local</option>
+                                    <?php
+                                        require_once('classes/local.php');
+                                        $objeto = new Local();
+                                        $lista = $objeto->selecionarLocal();
+                                        foreach($lista as $local){
+                                            if($registro->local == $local->id){
+                                                echo "<option selected value='$local->id'>$local->nome</option>";
+                                            }else{
+                                                echo "<option value='$local->id'>$local->nome</option>";
+                                            }
+                                        }
+                                    ?>
+                                </select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Erro</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="ghe" placeholder="Digite número do ghe" maxlength="60" pattern="[A-Za-z0-9\ w]{0,6}" required value="<?=$registro->ghe?>">
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Deverá conter até 6 caracteres</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="cbo" placeholder="Digite número do cbo" maxlength="60" list="cbo" pattern="[A-Za-z0-9\ w]{0,6}" required value="<?=$registro->cbo?>">
+                                <datalist id="cbo">
+                                    <?php
+                                    require_once('classes/cbo.php');
+                                    $objeto = new cbo();
+                                    $lista = $objeto->selecionarCbo();
+                                    foreach ($lista as $cbo) {
+                                        echo '<option value="' . $cbo->id . '">' . $cbo->nome . '</option>';
+                                    }
+                                    ?>
+                                </datalist>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Deverá conter até 6 caracteres</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="qt" placeholder="Digite o número do qt" maxlength="2" pattern="[A-Za-z0-9\ w]{0,2}" required value="<?=$registro->qt?>">
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Deverá conter até 2 números</div>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="id_funcao" required>
+                                    <option value="" disabled selected>Selecione a função</option>
+                                    <?php
+                                    require_once('classes/funcao.php');
+                                    $objeto = new funcao();
+                                    $lista = $objeto->selecionarFuncao();
+                                    foreach ($lista as $funcao) {
+                                        if($funcao->id == $registro->id_funcao){
+                                            echo '<option selected value="' . $funcao->id . '">' . $funcao->nome . '</option>';
+                                        }else{
+                                            echo '<option value="' . $funcao->id . '">' . $funcao->nome . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Deverá conter até 6 caracteres</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <input type="submit" class="btn btn-block btn-success mt-4" value="Salvar">
+                                </div>
+                                <div class="col-lg-4">
+                                    <input type="reset" class="btn btn-block btn-success mt-4" value="Limpar">
+                                </div>
+                                <div class="col-lg-4">
+                                    <input onclick="goBack()" class="btn btn-block btn-success mt-4" value="Cancelar">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+
+        </div>
+    </section>
+
+    <!--Validar formulario needs-validation-->
+    <script>
+        // Disable form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Get the forms we want to add validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+    <script>
+        function goBack() {
+            window.history.go(-1);
+        }
+    </script>
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>
