@@ -1,10 +1,10 @@
 <?php
 require_once("classes/conexao.php");
-require_once("classes/categ_risco_indicea.php");
+require_once("classes/anexo.php");
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $objeto = new risco();
-    $resultado = $objeto->apagarGrauRisco($id);
+    $objeto = new Anexo();
+    $resultado = $objeto->apagarAnexo($id);
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,6 @@ if (isset($_GET['id'])) {
 
 <body class="bg-body" style="overflow-x: hidden">
     <?php require_once('nav_trab.php'); ?>
-
     <?php
     if ($_SESSION['tipo_usuario'] == "func") {
         $acesso = "disabled";
@@ -43,32 +42,42 @@ if (isset($_GET['id'])) {
                 <table class="table table-hover table-bordered mt-5" style="background:white">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col" style="vertical-align:middle">Condiçao</th>
-                            <th scope="col" style="vertical-align:middle">Descrição</th>
-                            <th scope="col" style="vertical-align:middle">Pontos</th>
-                            <th scope="col" style="vertical-align:middle">Recomendação</th>
-                            <th scope="col" class="text-center" style="vertical-align:middle">Alterar</th>
+                            <th scope="col" style="vertical-align:middle">Nome</th>
+                            <th scope="col" style="vertical-align:middle">Ghe</th>
+                            <th scope="col" style="vertical-align:middle">Função</th>
                             <th scope="col" class="text-center" style="vertical-align:middle">Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         require_once("classes/conexao.php");
-                        require_once("classes/categ_risco_indicea.php");
-                        $objeto = new Risco();
-                        $lista = $objeto->selecionarRisco();
+                        require_once("classes/anexo.php");
+                        require_once("classes/ghe.php");
+                        require_once("classes/funcao.php");
+                        $obj_ghe = new Ghe;
+                        $obj_funcao = new Funcao;
+                        $objeto = new Anexo();
+                        $lista = $objeto->selecionarAnexo();
                         foreach ($lista as $registro) {
                         ?>
                             <tr>
-                                <td><?= $registro->condicao ?></td>
-                                <td><?= $registro->descricao ?></td>
-                                <td><?= $registro->pontos ?></td>
-                                <td><?= $registro->recomendacao ?></td>
+                                <td><?= $registro->nome ?></td>
+                                <?php
+                                $lista_ghe = $obj_ghe->selecionarGheWhere($registro->id_ghe);
+                                foreach ($lista_ghe as $ghe) {
+                                    echo "<td>" . $ghe->nome . "</td>";
+                                }
+                                ?>
+                                <?php
+                                $lista_funcao = $obj_funcao->selecionarFuncaoWhere($registro->id_funcao);
+                                foreach ($lista_funcao as $funcao) {
+                                    echo "<td>" . $funcao->nome . "</td>";
+                                }
+                                ?>
                                 <?php
                                 if (!($acesso == "disabled")) {
                                 ?>
-                                    <td class="text-center"><a href='editar_grau_risco.php?id=<?= $registro->id ?>'><i class='fas fa-edit'></i></a></td>
-                                    <td class="text-center"><a href='exibir_grau_risco.php?id=<?= $registro->id ?>'><i class='fa fa-trash' aria-hidden='true'></i></a></i></td>
+                                    <td class="text-center"><a href='exibir_anexo.php?id=<?= $registro->id ?>'><i class='fa fa-trash' aria-hidden='true'></i></a></i></td>
                                 <?php
                                 }
                                 ?>

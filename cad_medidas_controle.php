@@ -35,13 +35,13 @@
                                 <select class="form-control" name="id_ghe" require>
                                     <option value="" disabled selected>Escolha o ghe:</option>
                                     <?php
-                                        require_once('classes/ghe.php');
-                                        $objeto = new ghe();
-                                        $lista = $objeto->selecionarGhe();
-                                        foreach($lista as $ghe){
-                                            ?><option value="<?=$ghe->id?>"><?=$ghe->nome?></option><?php
-                                        }
-                                    ?>
+                                    require_once('classes/ghe.php');
+                                    $objeto = new ghe();
+                                    $lista = $objeto->selecionarGhe();
+                                    foreach ($lista as $ghe) {
+                                    ?><option value="<?= $ghe->id ?>"><?= $ghe->nome ?></option><?php
+                                                                                                }
+                                                                                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -60,7 +60,7 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="epc" placeholder="ecp" required>
+                                <input type="text" class="form-control" name="epc" placeholder="epc" required>
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                    <label>Periculosidade:</label>
+                                        <label>Periculosidade:</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="periculosidade" value="0">
                                             <label class="form-check-label" for="insalubridade">

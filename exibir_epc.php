@@ -1,10 +1,10 @@
 <?php
 require_once("classes/conexao.php");
-require_once("classes/categ_risco_indicea.php");
+require_once("classes/epc.php");
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $objeto = new risco();
-    $resultado = $objeto->apagarGrauRisco($id);
+    $objeto = new epc();
+    $resultado = $objeto->apagarEpc($id);
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,6 @@ if (isset($_GET['id'])) {
 
 <body class="bg-body" style="overflow-x: hidden">
     <?php require_once('nav_trab.php'); ?>
-
     <?php
     if ($_SESSION['tipo_usuario'] == "func") {
         $acesso = "disabled";
@@ -43,10 +42,7 @@ if (isset($_GET['id'])) {
                 <table class="table table-hover table-bordered mt-5" style="background:white">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col" style="vertical-align:middle">Condiçao</th>
-                            <th scope="col" style="vertical-align:middle">Descrição</th>
-                            <th scope="col" style="vertical-align:middle">Pontos</th>
-                            <th scope="col" style="vertical-align:middle">Recomendação</th>
+                            <th scope="col" style="vertical-align:middle">Nome</th>
                             <th scope="col" class="text-center" style="vertical-align:middle">Alterar</th>
                             <th scope="col" class="text-center" style="vertical-align:middle">Excluir</th>
                         </tr>
@@ -54,21 +50,18 @@ if (isset($_GET['id'])) {
                     <tbody>
                         <?php
                         require_once("classes/conexao.php");
-                        require_once("classes/categ_risco_indicea.php");
-                        $objeto = new Risco();
-                        $lista = $objeto->selecionarRisco();
+                        require_once("classes/epc.php");
+                        $objeto = new epc();
+                        $lista = $objeto->selecionarEpc();
                         foreach ($lista as $registro) {
                         ?>
                             <tr>
-                                <td><?= $registro->condicao ?></td>
-                                <td><?= $registro->descricao ?></td>
-                                <td><?= $registro->pontos ?></td>
-                                <td><?= $registro->recomendacao ?></td>
+                                <td><?= $registro->nome ?></td>
                                 <?php
                                 if (!($acesso == "disabled")) {
                                 ?>
-                                    <td class="text-center"><a href='editar_grau_risco.php?id=<?= $registro->id ?>'><i class='fas fa-edit'></i></a></td>
-                                    <td class="text-center"><a href='exibir_grau_risco.php?id=<?= $registro->id ?>'><i class='fa fa-trash' aria-hidden='true'></i></a></i></td>
+                                    <td class="text-center"><a href='editar_epc.php?id=<?= $registro->id ?>'><i class='fas fa-edit'></i></a></td>
+                                    <td class="text-center"><a href='exibir_epc.php?id=<?= $registro->id ?>'><i class='fa fa-trash' aria-hidden='true'></i></a></i></td>
                                 <?php
                                 }
                                 ?>

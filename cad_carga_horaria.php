@@ -20,7 +20,7 @@
 </head>
 
 <body class="bg-body">
-    <?php require_once('nav.php'); ?>
+    <?php require_once('nav_trab.php'); ?>
 
     <section class="container mt-5">
         <div class="row">

@@ -1,12 +1,3 @@
-<?php
-require_once("classes/conexao.php");
-require_once("classes/prevencao.php");
-$id = $_GET['id'];
-$objeto = new prevencao();
-$resultado = $objeto->selecionarPrevencaoWhere($id);
-foreach ($resultado as $registro) {
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -38,15 +29,12 @@ foreach ($resultado as $registro) {
                 <div class="row">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
-                        <form action="update_prevencao.php" method="POST" class="formulario">
-                            <h2 class="text-center py-4">Alterar Fundamento Técnico Legal</h2>
+                        <form action="inserir_epc.php" method="POST" class="needs-validation formulario" novalidate>
+                            <h2 class="text-center py-4">Cadastro EPC</h2>
                             <div class="form-group">
-                                <textarea type="text" class="form-control" name="texto" placeholder="Digite o nome do serviço" maxlength="255" pattern="[a-zA-Z0-9\ w]{0,255}" required rows="3"><?= $registro->texto ?></textarea>
+                                <input type="text" class="form-control" name="nome" placeholder="Digite o nome do EPC" maxlength="60" pattern="[A-Za-z0-9\ w]{0,80}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Deverá conter até 255 caracteres</div>
-                            </div>
-                            <div class="form-group" style="display:none">
-                                <input type="text" class="form-control" name="id" value="<?= $registro->id ?>" required readonly>
+                                <div class="invalid-feedback">Deverá conter até 80 caracteres</div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">

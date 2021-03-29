@@ -41,7 +41,7 @@ foreach ($lista as $ghe) {
 
     //Titulo
     $section->addTitle("GHE: $ghe->nome - SETOR $setor->nome - Local: $local->nome", 2);
-    $section->addTitle("Tabela $list: GHE: $ghe->nome - SETOR $setor->nome - Local: $local->nome", 4);
+    $section->addTitle("Tabela $list: GHE: $ghe->nome - SETOR $setor->nome - Local: $local->nome", 6);
     $fontGhe = array('size' => 7);
 
     //Tabelas ghe
@@ -278,21 +278,22 @@ foreach ($lista as $ghe) {
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 6, 'valign' => 'center'))->addText(
         "
-    * 1 - Irrelevante - Abaixo do NA / Simples Exposição / Inexistente
-    * 2 - Atenção - Acima do NA e abaixo do LT / Concentração Desconhecida / Não quantificado
-    * 3 - Crítico - Acima do LT",
+    * 1 - Irrelevante - Abaixo do NA / Simples Exposição / Inexistente 
+    * 2 - Atenção - Acima do NA e abaixo do LT / Concentração Desconhecida / Não quantificado 
+    * 3 - Crítico - Acima do LT 
+    ",
         $fontGhe,
         array('align' => 'center')
     );
     $row->addCell(null, array('gridSpan' => 5, 'valign' => 'center'))->addText("
-    ** 1 - Exposição com proteção - Eficaz ou Desnecessária
-    ** 2 - Exposição com proteção - Eficiente / Duvidosa
-    ** 3 - Exposição com proteção – Ineficiente ou Não utilizada
+    ** 1 - Exposição com proteção - Eficaz ou Desnecessária   
+    ** 2 - Exposição com proteção - Eficiente / Duvidosa 
+    ** 3 - Exposição com proteção – Ineficiente ou Não utilizada 
     ", $fontGhe, array('align' => 'center'));
     $row->addCell(null, array('gridSpan' => 5, 'valign' => 'center'))->addText("
-    *** 1 - Exposição Eventual ou Sem Risco menor que 30 minutos / dia
-    *** 2 - Exposição Intermitente maior que 30 minutos menor que 400 minutos / dia
-    *** 3 - Exposição Permanente maior que 400 minutos / dia
+    *** 1 - Exposição Eventual ou Sem Risco menor que 30 minutos / dia 
+    *** 2 - Exposição Intermitente maior que 30 minutos menor que 400 minutos / dia 
+    *** 3 - Exposição Permanente maior que 400 minutos / dia 
     ", $fontGhe, array('align' => 'center'));
 
     // //legenda
@@ -307,15 +308,15 @@ foreach ($lista as $ghe) {
     //medidas de controle recomendadas
     $table = $section->addTable(array('borderSize' => 6, 'borderColor' => '000000', 'alignment' => 'center'));
     $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("MEDIDAS DE CONTROLE RECOMENDADAS", array('bold' => true, 'size' => 7), array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center', 'bgColor' => 'd3d3d3'))->addText("MEDIDAS DE CONTROLE RECOMENDADAS", array('bold' => true, 'size' => 7), array('align' => 'center'));
 
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 2, 'valign' => 'center'))->addText("ADMINISTRATIVAS", $fontGhe, array('align' => 'center'));
     $row->addCell(null, array('gridSpan' => 14, 'valign' => 'center'))->addText("
-    Cabe ao Trabalhador
-    $medidas_controle->trabalhador
+    Cabe ao Trabalhador 
+    $medidas_controle->trabalhador 
 
-    Cabe ao Empregador
+    Cabe ao Empregador 
     $medidas_controle->empregador
     ", $fontGhe, array('align' => 'center'));
 
@@ -336,14 +337,28 @@ foreach ($lista as $ghe) {
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("PARECER TÉCNICO", array('bold' => true, 'size' => 7), array('align' => 'center'));
     $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$medidas_controle->parecer_tecnico", $fontGhe, array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("
+    De acordo com o Art. 191 da CLT – Consolidação das Leis do Trabalho: 
+    A eliminação ou a neutralização da insalubridade ocorrerá: 
+    I - Com a adoção de medidas que conservem o ambiente de trabalho dentro dos limites de tolerância; 
+    II - Com a utilização de equipamentos de proteção individual ao trabalhador, que diminuam a intensidade do agente agressivo a limites de tolerância. 
+    ", $fontGhe, array('align' => 'center'));
 
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 8, 'valign' => 'center'))->addText("INSALUBRIDADE", array('bold' => true, 'size' => 7), array('align' => 'center'));
     $row->addCell(null, array('gridSpan' => 8, 'valign' => 'center'))->addText("PERICULOSIDADE", array('bold' => true, 'size' => 7), array('align' => 'center'));
     $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 8, 'valign' => 'center'))->addText("Conforme NR-15 e Anexos, avaliada a função e condições de trabalho. Não constatado indício de exposição a agente de natureza física, química e biológica que por sua intensidade, duração e frequência permita o enquadramento na NR-15. Concluímos que a atividade deve ser considerada: NÃO INSALUBRE. Portanto, os trabalhadores não fazem jus ao Adicional de Insalubridade.", $fontGhe, array('align' => 'center'));
-    $row->addCell(null, array('gridSpan' => 8, 'valign' => 'center'))->addText("Conforme NR-16 e Anexos, avaliada a função e condições de trabalho. Não foram encontradas condições para o enquadramento de atividade e operações perigosas. Concluímos que a atividade deve ser considerada: NÃO PERICULOSA. Portanto, os trabalhadores não fazem jus ao Adicional de Periculosidade.", $fontGhe, array('align' => 'center'));
+
+    if ($medidas_controle->insalubridade == 0) {
+        $row->addCell(null, array('gridSpan' => 8, 'valign' => 'center'))->addText("Conforme NR-15 e Anexos, avaliada a função e condições de trabalho. Não constatado indício de exposição a agente de natureza física, química e biológica que por sua intensidade, duração e frequência permita o enquadramento na NR-15. Concluímos que a atividade deve ser considerada: NÃO INSALUBRE. Portanto, os trabalhadores não fazem jus ao Adicional de Insalubridade.", $fontGhe, array('align' => 'center'));
+    } else {
+        $row->addCell(null, array('gridSpan' => 8, 'valign' => 'center'))->addText("Conforme NR-15 e Anexos, avaliada a função e condições de trabalho. Constatado indício de exposição a agente de natureza física, química e biológica que por sua intensidade, duração e frequência permita o enquadramento na NR-15. Concluímos que a atividade deve ser considerada: INSALUBRE. Portanto, os trabalhadores fazem jus ao Adicional de Insalubridade.", $fontGhe, array('align' => 'center'));
+    }
+    if ($medidas_controle->periculosidade == 0) {
+        $row->addCell(null, array('gridSpan' => 8, 'valign' => 'center'))->addText("Conforme NR-16 e Anexos, avaliada a função e condições de trabalho. Não foram encontradas condições para o enquadramento de atividade e operações perigosas. Concluímos que a atividade deve ser considerada: NÃO PERICULOSA. Portanto, os trabalhadores não fazem jus ao Adicional de Periculosidade.", $fontGhe, array('align' => 'center'));
+    } else {
+        $row->addCell(null, array('gridSpan' => 8, 'valign' => 'center'))->addText("Conforme NR-16 e Anexos, avaliada a função e condições de trabalho. Foram encontradas condições para o enquadramento de atividade e operações perigosas. Concluímos que a atividade deve ser considerada: PERICULOSA. Portanto, os trabalhadores fazem jus ao Adicional de Periculosidade.", $fontGhe, array('align' => 'center'));
+    }
 
     $row = $table->addRow(null, array('cantSplit' => true));
     if ($medidas_controle->insalubridade == 0) {
@@ -359,8 +374,8 @@ foreach ($lista as $ghe) {
     }
 
     $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 2, 'valign' => 'center'))->addText("OBSERVAÇÃO", $fontGhe, array('align' => 'center'));
-    $row->addCell(null, array('gridSpan' => 14, 'valign' => 'center'))->addText("$medidas_controle->observacao", $fontGhe, array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 4, 'valign' => 'center'))->addText("OBSERVAÇÃO", array('name' => 'arial', 'size' => 7, 'color' => '#ff0000'), array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 12, 'valign' => 'center'))->addText("A caracterização descrita acima - neste Parecer - é válida somente, enquanto as condições de trabalho permanecerem com aquelas observadas e informadas durante os levantamento in loco.", $fontGhe, array('align' => 'center'));
 
     $section->addText("Fonte: Adaptado pelo autor", $fontStyle, $paragraphStyle);
 

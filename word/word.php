@@ -7,6 +7,10 @@ $prioridade = $_POST['prioridade'];
 $agentes_ambientais = $_POST['agente'];
 
 //Funções para receber dados do BD
+require_once('../classes/anexo.php');
+$obj_anexo = new Anexo();
+
+//Funções para receber dados do BD
 require_once('../classes/ghe.php');
 $obj_ghe = new ghe();
 
@@ -86,6 +90,12 @@ require_once('titulo_6.php');
 require_once('titulo_7.php');
 require_once('titulo_8.php');
 require_once('titulo_9.php');
+require_once('titulo_11.php');
+require_once('titulo_12.php');
+require_once('titulo_13.php');
+// require_once('titulo_14.php');
+require_once('titulo_15.php');
+require_once('titulo_16.php');
 require_once('header.php');
 require_once('footer.php');
 
