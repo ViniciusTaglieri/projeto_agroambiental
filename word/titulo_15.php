@@ -188,6 +188,7 @@ $myTextElement = $section->addText('Considera-se Equipamento de Proteção Indiv
 $myTextElement = $section->addText('De acordo com a NR-4, item 4.12, alínea b:', $fontStyle, $paragraphStyle);
 
 //citação
+$myTextElement = $section->addText('Compete aos profissionais integrantes dos Serviços Especializados em Engenharia de Segurança [...] determinar, quando esgotados todos os meios conhecidos para a eliminação do risco e este persistir, mesmo reduzido, a utilização, pelo trabalhador, de Equipamentos de Proteção Individual-EPI, de acordo com o que determina a NR 6, desde que a concentração, a intensidade ou característica do agente assim o exija', array('name' => 'arial', 'size' => 10), array('lineHeight' => 1, 'alignment' => 'both', 'indent' => \PhpOffice\PhpWord\Shared\Converter::cmToTwip(-4 / 26.41)));
 
 $myTextElement = $section->addText('Conforme a NR 9: a utilização de Equipamento de Proteção Individual - EPI no âmbito do Programa deverá considerar as Normas Legais e Administrativas em vigor e envolver no mínimo:', $fontStyle, $paragraphStyle);
 
@@ -203,6 +204,7 @@ $myTextElement = $section->addText('A ergonomia é o estudo científico de adapt
 $myTextElement = $section->addText('A Norma Regulamentadora nº 17, destaca:', $fontStyle, $paragraphStyle);
 
 //citcao
+$myTextElement = $section->addText('[...] 17.1. Esta Norma Regulamentadora visa a estabelecer parâmetros que permitam a adaptação das condições de trabalho às características psicofisiológicas dos trabalhadores, de modo a proporcionar um máximo de conforto, segurança e desempenho eficiente. 17.1.1. As condições de trabalho incluem aspectos relacionados ao levantamento, transporte e descarga de materiais, ao mobiliário, aos equipamentos e às condições ambientais do posto de trabalho e à própria organização do trabalho.', array('name' => 'arial', 'size' => 10), array('lineHeight' => 1, 'alignment' => 'both', 'indent' => \PhpOffice\PhpWord\Shared\Converter::cmToTwip(-4 / 26.41)));
 
 $myTextElement = $section->addText('Dos Fatores de Risco de Natureza Ergonômica', array('bold' => true, 'name' => 'arial', 'size' => 12), $paragraphStyle);
 $myTextElement = $section->addText('Riscos ergonômicos são os fatores que podem afetar a integridade física ou mental do trabalhador, proporcionando-lhe desconforto ou doença (FIOCRUZ).', $fontStyle, $paragraphStyle);

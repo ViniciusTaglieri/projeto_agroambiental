@@ -21,18 +21,20 @@ if (!(($_SESSION['usuario']) || ($_SESSION['senha']))) {
                             Cadastrar
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="cad_epi.php">Epi</a>
-                            <a class="dropdown-item" href="cad_epc.php">Epc</a>
+                            <a class="dropdown-item" href="cad_epi.php">Epi - Função</a>
+                            <a class="dropdown-item" href="cad_epc.php">Epc - Função</a>
                             <a class="dropdown-item" href="cad_subcategoria.php">Subcategoria</a>
                             <a class="dropdown-item" href="cad_riscos.php">Riscos</a>
                             <a class="dropdown-item" href="cad_funcao.php">Função</a>
                             <a class="dropdown-item" href="cad_ppra.php">Detalhe da Função</a>
                             <a class="dropdown-item" href="cad_setor.php">Setor</a>
                             <a class="dropdown-item" href="cad_local.php">Local</a>
+                            <a class="dropdown-item" href="cad_epi_epc_local.php">Epi / Epc - Local</a>
                             <a class="dropdown-item" href="cad_inventario.php">Inventário de riscos</a>
                             <a class="dropdown-item" href="cad_agentes.php">Agentes ambiental</a>
                             <a class="dropdown-item" href="cad_ghe.php">Ghe</a>
                             <a class="dropdown-item" href="cad_medidas_controle.php">Medidas de controle</a>
+                            <a class="dropdown-item" href="cad_medida_local.php">Medidas de controle locais</a>
                             <a class="dropdown-item" href="cad_grau_risco.php">Grau de risco</a>
                             <a class="dropdown-item" href="cad_tipo_trabalho.php">Tipo do trabalho</a>
                             <a class="dropdown-item" href="cad_carga_horaria.php">Carga horária</a>
@@ -49,18 +51,20 @@ if (!(($_SESSION['usuario']) || ($_SESSION['senha']))) {
                             Visualizar
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="exibir_epi.php">Epi</a>
-                            <a class="dropdown-item" href="exibir_epc.php">Epc</a>
+                            <a class="dropdown-item" href="exibir_epi.php">Epi - Função</a>
+                            <a class="dropdown-item" href="exibir_epc.php">Epc - Funçõ</a>
                             <a class="dropdown-item" href="exibir_subcategoria.php">Subcategoria</a>
                             <a class="dropdown-item" href="exibir_riscos.php">Riscos</a>
                             <a class="dropdown-item" href="exibir_funcao.php">Função</a>
                             <a class="dropdown-item" href="exibir_ppra.php">Detalhe da Função</a>
                             <a class="dropdown-item" href="exibir_setor.php">Setor</a>
                             <a class="dropdown-item" href="exibir_local.php">Local</a>
+                            <a class="dropdown-item" href="exibir_epi_epc_local.php">Epi / Epc - Local</a>
                             <a class="dropdown-item" href="exibir_inventario.php">Inventário de riscos</a>
                             <a class="dropdown-item" href="exibir_agentes.php">Agentes ambiental</a>
                             <a class="dropdown-item" href="exibir_ghe.php">Ghe</a>
                             <a class="dropdown-item" href="exibir_medidas_controle.php">Medidas de controle</a>
+                            <a class="dropdown-item" href="exibir_medida_local.php">Medidas de controle locais</a>
                             <a class="dropdown-item" href="exibir_grau_risco.php">Grau de risco</a>
                             <a class="dropdown-item" href="exibir_tipo_trabalho.php">Tipos de trabalho</a>
                             <a class="dropdown-item" href="exibir_carga_horaria.php">Carga horária</a>

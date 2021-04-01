@@ -40,19 +40,9 @@
                                     $lista = $objeto->selecionarGhe();
                                     foreach ($lista as $ghe) {
                                     ?><option value="<?= $ghe->id ?>"><?= $ghe->nome ?></option><?php
-                                                                                                }
-                                                                                                    ?>
+                                                                                            }
+                                                                                                ?>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <textarea type="text" class="form-control" name="trabalhador" placeholder="Cabe ao trabalhador" required rows="3"></textarea>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <textarea type="text" class="form-control" name="empregador" placeholder="Cabe ao empregador" required rows="3"></textarea>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="form-group">
                                 <textarea type="text" class="form-control" name="ergonomico" placeholder="Para agente ergonomico" required rows="3"></textarea>
@@ -66,11 +56,6 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" name="epi" placeholder="epi" required>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <textarea type="text" class="form-control" name="parecer_tecnico" placeholder="Digite o parecer técnico" required rows="3"></textarea>
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback"></div>
                             </div>

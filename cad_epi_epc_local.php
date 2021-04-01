@@ -29,49 +29,47 @@
                 <div class="row">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
-                        <form action="inserir_funcao.php" method="POST" class="needs-validation formulario" novalidate>
-                            <h2 class="text-center py-4">Cadastro de Função</h2>
+                        <form action="inserir_epi_epc_local.php" method="POST" class="needs-validation formulario" novalidate>
+                            <h2 class="text-center py-4">Cadastro Epc</h2>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="nome" placeholder="Digite o nome da função" maxlength="140" pattern="[A-Za-z0-9\ w]{0,140}" required>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Deverá conter até 140 caracteres</div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="descricao" placeholder="Digite a descrição da função" pattern="[A-Za-z0-9\ w]" required>
+                                <select class="form-control" name="local" required>
+                                    <option value="" selected disabled>Selecione um local</option>
+                                    <?php
+                                    require_once('classes/local.php');
+                                    $objeto = new Local();
+                                    $lista = $objeto->selecionarLocal();
+                                    foreach ($lista as $local) {
+                                        echo "<option value='$local->id'>$local->nome</option>";
+                                    }
+                                    ?>
+                                </select>
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback">Erro</div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="id_cbo" placeholder="Digite número do cbo" maxlength="60" list="cbo" pattern="[A-Za-z0-9\ w]{0,6}" required>
-                                <datalist id="cbo">
-                                    <?php
-                                    require_once('classes/cbo.php');
-                                    $objeto = new cbo();
-                                    $lista = $objeto->selecionarCbo();
-                                    foreach ($lista as $cbo) {
-                                        echo '<option value="' . $cbo->id . '">' . $cbo->nome . '</option>';
-                                    }
-                                    ?>
-                                </datalist>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Deverá conter até 6 caracteres</div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" value="0">
+                                    <label class="form-check-label" for="insalubridade">
+                                        epi
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" value="1">
+                                    <label class="form-check-label" for="insalubridade">
+                                        epc
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-group">
+                                <input type="text" class="form-control" name="titulo" placeholder="Digite a área" maxlength="60" pattern="[A-Za-z0-9\ w]{0,60}" required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Deverá conter até 60 caracteres</div>
+                            </div>
+                            <div class="form-group">
+                                <button class="add_field_button btn btn-primary btn-sm mb-2">Adicionar campo de Descrição</button>
                                 <div class="input_fields_wrap">
-                                    <button class="add_field_button btn btn-primary btn-sm mb-2">Adicionar campo de EPI</button>
-                                    <div class="form-group input-group">
-                                        <select name="epi[]" class="form-control" required>
-                                            <option value="" selected disabled>Selecione um EPI</option>
-                                            <?php
-                                            require_once('classes/epi.php');
-                                            $objeto = new epi();
-                                            $lista = $objeto->selecionarEpi();
-                                            foreach ($lista as $epi) {
-                                                echo '<option value="' . $epi->nome . '">' . $epi->nome . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
+                                    <input type="text" class="form-control mb-3" name="descricao[]" placeholder="Digite a descrição" required>
+                                    <div class="valid-feedback"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -118,12 +116,6 @@
     </script>
 
     <script>
-        function goBack() {
-            window.history.go(-1);
-        }
-    </script>
-
-    <script>
         $(document).ready(function() {
             var max_fields = 20; //maximum input boxes allowed
             var wrapper = $(".input_fields_wrap"); //Fields wrapper
@@ -134,12 +126,7 @@
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<div class="form-group input-group"><select name="epi[]" class="form-control input-group" required><option value="" selected disabled>Selecione um EPI</option><?php require_once('classes/epi.php');
-                                                                                                                                                                                                        $objeto = new epi();
-                                                                                                                                                                                                        $lista = $objeto->selecionarEpi();
-                                                                                                                                                                                                        foreach ($lista as $epi) {
-                                                                                                                                                                                                            echo '<option value="' . $epi->nome . '">' . $epi->nome . '</option>';
-                                                                                                                                                                                                        } ?> </select> <a href="#" class="remove_field input-group-text">Remove</a></div>'); //add input box
+                    $(wrapper).append('<div class="form-group input-group"><input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required><a href="#" class="remove_field input-group-text">Remove</a><div class="valid-feedback"></div></div>');
                 }
             });
 
@@ -149,6 +136,12 @@
                 x--;
             })
         });
+    </script>
+
+    <script>
+        function goBack() {
+            window.history.go(-1);
+        }
     </script>
 
     <!-- JS, Popper.js, and jQuery -->

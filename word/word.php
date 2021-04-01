@@ -6,6 +6,20 @@ $indice_s = $_POST['indice_s'];
 $prioridade = $_POST['prioridade'];
 $agentes_ambientais = $_POST['agente'];
 
+//empregador
+$empregador_nome = $_POST['empregador_nome'];
+$empregador_rg = $_POST['empregador_rg'];
+$empregador_cpf = $_POST['empregador_cpf'];
+
+
+//Funções para receber dados do BD
+require_once('../classes/epi_epc_local.php');
+$obj_epi_epc = new EpiEpc();
+
+//Funções para receber dados do BD
+require_once('../classes/medidas_local.php');
+$obj_medidas = new MedidasLocal();
+
 //Funções para receber dados do BD
 require_once('../classes/anexo.php');
 $obj_anexo = new Anexo();
@@ -90,10 +104,11 @@ require_once('titulo_6.php');
 require_once('titulo_7.php');
 require_once('titulo_8.php');
 require_once('titulo_9.php');
+require_once('titulo_10.php');
 require_once('titulo_11.php');
 require_once('titulo_12.php');
 require_once('titulo_13.php');
-// require_once('titulo_14.php');
+require_once('titulo_14.php');
 require_once('titulo_15.php');
 require_once('titulo_16.php');
 require_once('header.php');

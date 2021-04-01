@@ -21,4 +21,4 @@ $myTextElement = $section->addText('A NR 9 (9.1.1) estabelece a obrigatoriedade 
 
 $myTextElement = $section->addText('As ações do PPRA devem ser desenvolvidas no âmbito de cada estabelecimento da empresa, sob a responsabilidade do empregador, com a participação dos trabalhadores, sendo sua abrangência e profundidade dependentes das características dos riscos e das necessidades de controle (NR 9, 9.1.2).', $fontStyle, $paragraphStyle);
 
-$myTextElement = $section->addText('A responsabilidade pela implantação e implementação do PPRA na empresa ' . $empresa->razao_social . ' é do empregador: ' . $empresa->razao_social . '.', $fontStyle, array('LineHeight' => 1.15));
+$myTextElement = $section->addText('A responsabilidade pela implantação e implementação do PPRA na empresa ' . $empresa->razao_social . ' é do empregador: ' . $empregador_nome . '.', $fontStyle, array('LineHeight' => 1.15));

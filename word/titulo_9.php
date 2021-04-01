@@ -1,4 +1,13 @@
 <?php
+$section = $phpWord->addSection();
+//Definir propriedades da sessao
+$sectionStyle = $section->getStyle();
+$sectionStyle->setMarginTop(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(3));
+$sectionStyle->setMarginBottom(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(2));
+$sectionStyle->setMarginLeft(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(3));
+$sectionStyle->setMarginRight(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(2));
+$sectionStyle->setOrientation('portrait');
+
 //Titulo
 $section->addTitle("INVENTÁRIO DE RISCOS E MEDIDAS DE CONTROLE Vs GHE", 1);
 
@@ -122,19 +131,25 @@ foreach ($lista as $ghe) {
         $lista_fisicos = $obj_inventario->selecionarInventarioWhere($fisicos[$i]);
         foreach ($lista_fisicos as $fisico) {
             $row = $table->addRow(null, array('cantSplit' => true));
-            if ($i == 0) {
+            if ($fisico->fonte_geradora == NULL) {
                 $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("Ausência de Fator de Risco", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("INEXISTENTE DE ACORDO COM AVALIAÇÃO QUALITATIVA – NR 15 – ANEXO 11, ANEXO 12, ANEXO 13", $fontGhe, array('align' => 'center'));
             } else {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                if ($i == 0) {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                } else {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                }
+                $row->addCell(null, array('valign' => 'center'))->addText("$fisico->agente", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$fisico->fonte_geradora", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$fisico->propagacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$fisico->danos_saude", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$fisico->avaliacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$fisico->metodologia", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$fisico->intensidade", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$fisico->tolerancia", $fontGhe, array('align' => 'center'));
             }
-            $row->addCell(null, array('valign' => 'center'))->addText("$fisico->agente", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$fisico->fonte_geradora", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$fisico->propagacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$fisico->danos_saude", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$fisico->avaliacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$fisico->metodologia", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$fisico->intensidade", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$fisico->tolerancia", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$fisico->anexo", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$fisico->risco", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$fisico->protecao", $fontGhe, array('align' => 'center'));
@@ -148,30 +163,37 @@ foreach ($lista as $ghe) {
         }
     }
 
-    // quimico
+    //quimico
     for ($i = 0; $i < count($quimicos); $i++) {
         $lista_quimicos = $obj_inventario->selecionarInventarioWhere($quimicos[$i]);
         foreach ($lista_quimicos as $quimico) {
+            // quimico
             $row = $table->addRow(null, array('cantSplit' => true));
-            if ($i == 0) {
+            if ($quimico->agente == NULL) {
                 $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Químico", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("Ausência de Fator de Risco", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("$quimico->fonte_geradora", $fontGhe, array('align' => 'center'));
             } else {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                if ($i == 0) {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                } else {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                }
+                $row->addCell(null, array('valign' => 'center'))->addText("$quimico->agente", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$quimico->fonte_geradora", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$quimico->propagacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$quimico->danos_saude", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$quimico->avaliacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$quimico->metodologia", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$quimico->intensidade", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$quimico->tolerancia", $fontGhe, array('align' => 'center'));
             }
-            $row->addCell(null, array('valign' => 'center'))->addText("$quimico->agente", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$quimico->fonte_geradora", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$quimico->propagacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$quimico->danos_saude", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$quimico->avaliacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$quimico->metodologia", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$quimico->intensidade", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$quimico->tolerancia", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$quimico->anexo", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$quimico->risco", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$quimico->protecao", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$quimico->tempo", $fontGhe, array('align' => 'center'));
 
-            $exposicao = (int)$fisico->risco + (int)$fisico->protecao + (int)$fisico->tempo;
+            $exposicao = (int)$quimico->risco + (int)$quimico->protecao + (int)$quimico->tempo;
 
             $row->addCell(null, array('valign' => 'center'))->addText("$exposicao", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$quimico->grau_risco", $fontGhe, array('align' => 'center'));
@@ -183,26 +205,33 @@ foreach ($lista as $ghe) {
     for ($i = 0; $i < count($biologicos); $i++) {
         $lista_biologicos = $obj_inventario->selecionarInventarioWhere($biologicos[$i]);
         foreach ($lista_biologicos as $biologico) {
+            // biologico
             $row = $table->addRow(null, array('cantSplit' => true));
-            if ($i == 0) {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Biológico", $fontGhe, array('align' => 'center'));
+            if ($biologico->agente == NULL) {
+                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Químico", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("Ausência de Fator de Risco", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("$biologico->fonte_geradora", $fontGhe, array('align' => 'center'));
             } else {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                if ($i == 0) {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                } else {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                }
+                $row->addCell(null, array('valign' => 'center'))->addText("$biologico->agente", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$biologico->fonte_geradora", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$biologico->propagacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$biologico->danos_saude", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$biologico->avaliacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$biologico->metodologia", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$biologico->intensidade", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$biologico->tolerancia", $fontGhe, array('align' => 'center'));
             }
-            $row->addCell(null, array('valign' => 'center'))->addText("$biologico->agente", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$biologico->fonte_geradora", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$biologico->propagacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$biologico->danos_saude", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$biologico->avaliacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$biologico->metodologia", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$biologico->intensidade", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$biologico->tolerancia", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$biologico->anexo", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$biologico->risco", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$biologico->protecao", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$biologico->tempo", $fontGhe, array('align' => 'center'));
 
-            $exposicao = (int)$fisico->risco + (int)$fisico->protecao + (int)$fisico->tempo;
+            $exposicao = (int)$biologico->risco + (int)$biologico->protecao + (int)$biologico->tempo;
 
             $row->addCell(null, array('valign' => 'center'))->addText("$exposicao", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$biologico->grau_risco", $fontGhe, array('align' => 'center'));
@@ -214,26 +243,33 @@ foreach ($lista as $ghe) {
     for ($i = 0; $i < count($ergonomicos); $i++) {
         $lista_ergonomicos = $obj_inventario->selecionarInventarioWhere($ergonomicos[$i]);
         foreach ($lista_ergonomicos as $ergonomico) {
+            // ergonomico
             $row = $table->addRow(null, array('cantSplit' => true));
-            if ($i == 0) {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Ergonômico", $fontGhe, array('align' => 'center'));
+            if ($ergonomico->agente == NULL) {
+                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Químico", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("Ausência de Fator de Risco", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("$ergonomico->fonte_geradora", $fontGhe, array('align' => 'center'));
             } else {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                if ($i == 0) {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                } else {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                }
+                $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->agente", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->fonte_geradora", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->propagacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->danos_saude", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->avaliacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->metodologia", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->intensidade", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->tolerancia", $fontGhe, array('align' => 'center'));
             }
-            $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->agente", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->fonte_geradora", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->propagacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->danos_saude", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->avaliacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->metodologia", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->intensidade", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->tolerancia", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->anexo", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->risco", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->protecao", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->tempo", $fontGhe, array('align' => 'center'));
 
-            $exposicao = (int)$fisico->risco + (int)$fisico->protecao + (int)$fisico->tempo;
+            $exposicao = (int)$ergonomico->risco + (int)$ergonomico->protecao + (int)$ergonomico->tempo;
 
             $row->addCell(null, array('valign' => 'center'))->addText("$exposicao", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$ergonomico->grau_risco", $fontGhe, array('align' => 'center'));
@@ -245,26 +281,33 @@ foreach ($lista as $ghe) {
     for ($i = 0; $i < count($mecanicos); $i++) {
         $lista_mecanicos = $obj_inventario->selecionarInventarioWhere($mecanicos[$i]);
         foreach ($lista_mecanicos as $mecanico) {
+            // mecanicos
             $row = $table->addRow(null, array('cantSplit' => true));
-            if ($i == 0) {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Mecânicos/Acidentes", $fontGhe, array('align' => 'center'));
+            if ($mecanico->agente == NULL) {
+                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Químico", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("Ausência de Fator de Risco", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("$mecanico->fonte_geradora", $fontGhe, array('align' => 'center'));
             } else {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                if ($i == 0) {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                } else {
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
+                }
+                $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->agente", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->fonte_geradora", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->propagacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->danos_saude", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->avaliacao", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->metodologia", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->intensidade", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->tolerancia", $fontGhe, array('align' => 'center'));
             }
-            $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->agente", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->fonte_geradora", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->propagacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->danos_saude", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->avaliacao", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->metodologia", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->intensidade", $fontGhe, array('align' => 'center'));
-            $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->tolerancia", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->anexo", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->risco", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->protecao", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->tempo", $fontGhe, array('align' => 'center'));
 
-            $exposicao = (int)$fisico->risco + (int)$fisico->protecao + (int)$fisico->tempo;
+            $exposicao = (int)$mecanico->risco + (int)$mecanico->protecao + (int)$mecanico->tempo;
 
             $row->addCell(null, array('valign' => 'center'))->addText("$exposicao", $fontGhe, array('align' => 'center'));
             $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->grau_risco", $fontGhe, array('align' => 'center'));
@@ -275,25 +318,43 @@ foreach ($lista as $ghe) {
     //classificação do indice de exposição
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center', 'bgColor' => 'D3D3D3'))->addText("CLASSIFICAÇÃO DO ÍNDICE DE EXPOSIÇÃO - IE:", $fontGhe, array('align' => 'center'));
+
+    //1
     $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 6, 'valign' => 'center'))->addText(
-        "
-    * 1 - Irrelevante - Abaixo do NA / Simples Exposição / Inexistente 
-    * 2 - Atenção - Acima do NA e abaixo do LT / Concentração Desconhecida / Não quantificado 
-    * 3 - Crítico - Acima do LT 
-    ",
-        $fontGhe,
-        array('align' => 'center')
-    );
+    $row->addCell(null, array('gridSpan' => 6, 'valign' => 'center'))->addText("
+    * 1 - Irrelevante - Abaixo do NA / Simples Exposição / Inexistente
+    ", $fontGhe, array('align' => 'center'));
     $row->addCell(null, array('gridSpan' => 5, 'valign' => 'center'))->addText("
-    ** 1 - Exposição com proteção - Eficaz ou Desnecessária   
-    ** 2 - Exposição com proteção - Eficiente / Duvidosa 
-    ** 3 - Exposição com proteção – Ineficiente ou Não utilizada 
+    ** 1 - Exposição com proteção - Eficaz ou Desnecessária
     ", $fontGhe, array('align' => 'center'));
     $row->addCell(null, array('gridSpan' => 5, 'valign' => 'center'))->addText("
     *** 1 - Exposição Eventual ou Sem Risco menor que 30 minutos / dia 
+    ", $fontGhe, array('align' => 'center'));
+
+
+    //2
+    $row = $table->addRow(null, array('cantSplit' => true));
+    $row->addCell(null, array('gridSpan' => 6, 'valign' => 'center'))->addText("
+    * 2 - Atenção - Acima do NA e abaixo do LT / Concentração Desconhecida / Não quantificado 
+    ", $fontGhe, array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 5, 'valign' => 'center'))->addText("
+    ** 2 - Exposição com proteção - Eficiente / Duvidosa 
+    ", $fontGhe, array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 5, 'valign' => 'center'))->addText("
     *** 2 - Exposição Intermitente maior que 30 minutos menor que 400 minutos / dia 
-    *** 3 - Exposição Permanente maior que 400 minutos / dia 
+    ", $fontGhe, array('align' => 'center'));
+
+
+    //3
+    $row = $table->addRow(null, array('cantSplit' => true));
+    $row->addCell(null, array('gridSpan' => 6, 'valign' => 'center'))->addText("
+    * 3 - Crítico - Acima do LT
+    ", $fontGhe, array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 5, 'valign' => 'center'))->addText("
+    ** 3 - Exposição com proteção – Ineficiente ou Não utilizada 
+    ", $fontGhe, array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 5, 'valign' => 'center'))->addText("
+    *** 3 - Exposição Permanente maior que 400 minutos / dia
     ", $fontGhe, array('align' => 'center'));
 
     // //legenda
@@ -310,37 +371,67 @@ foreach ($lista as $ghe) {
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center', 'bgColor' => 'd3d3d3'))->addText("MEDIDAS DE CONTROLE RECOMENDADAS", array('bold' => true, 'size' => 7), array('align' => 'center'));
 
-    $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 2, 'valign' => 'center'))->addText("ADMINISTRATIVAS", $fontGhe, array('align' => 'center'));
-    $row->addCell(null, array('gridSpan' => 14, 'valign' => 'center'))->addText("
-    Cabe ao Trabalhador 
-    $medidas_controle->trabalhador 
-
-    Cabe ao Empregador 
-    $medidas_controle->empregador
-    ", $fontGhe, array('align' => 'center'));
-
-    $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 2, 'valign' => 'center'))->addText("PARA AGENTE ERGONÔMICO", $fontGhe, array('align' => 'center'));
-    $row->addCell(null, array('gridSpan' => 14, 'valign' => 'center'))->addText("$medidas_controle->ergonomico", $fontGhe, array('align' => 'center'));
+    //medidas de controle local
+    $lista_titulo = $obj_medidas->selecionarTituloWhereLocal($local->id);
+    foreach ($lista_titulo as $titulo) {
+        $row = $table->addRow(null, array('cantSplit' => true));
+        $lista_descricao = $obj_medidas->selecionarDescricaoWhereTitulo($titulo->id);
+        foreach ($lista_descricao as $key => $descricao) {
+            if ($key == 0) {
+                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart', 'gridSpan' => 2))->addText("$titulo->titulo", $fontGhe, array('align' => 'center'));
+            } else {
+                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue', 'gridSpan' => 2));
+            }
+            $row->addCell(null, array('gridSpan' => 14, 'valign' => 'center'))->addText("$descricao->descricao", $fontGhe, array('align' => 'center'));
+        }
+    }
 
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("EPC - EQUIPAMENTO DE PROTEÇÃO COLETIVA - EXISTENTE", array('bold' => true, 'size' => 7), array('align' => 'center'));
-    $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$medidas_controle->epc", $fontGhe, array('align' => 'center'));
+
+    // epi
+    $lista_tituloEpi = $obj_epi_epc->selecionarTituloEpiWhereLocal($local->id);
+    foreach ($lista_tituloEpi as $tituloEpi) {
+        $row = $table->addRow(null, array('cantSplit' => true));
+        $lista_descricao = $obj_epi_epc->selecionarDescricaoWhereTituloEpi($tituloEpi->id);
+        $row->addCell(null, array('valign' => 'center', 'gridSpan' => 16))->addText("$tituloEpi->titulo", array('bold' => true, 'name' => 'arial', 'size' => 7), array('align' => 'center'));
+        foreach ($lista_descricao as $key => $descricao) {
+            $row = $table->addRow(null, array('cantSplit' => true));
+            $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$descricao->descricao", $fontGhe, array('align' => 'center'));
+        }
+    }
 
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("EPI - EQUIPAMENTO DE PROTEÇÃO INDIVIDUAL - RECOMENDADO", array('bold' => true, 'size' => 7), array('align' => 'center'));
-    $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$medidas_controle->epi", $fontGhe, array('align' => 'center'));
+    // epc
+    $lista_tituloEpc = $obj_epi_epc->selecionarTituloEpcWhereLocal($local->id);
+    foreach ($lista_tituloEpc as $tituloEpc) {
+        $row = $table->addRow(null, array('cantSplit' => true));
+        $lista_descricao = $obj_epi_epc->selecionarDescricaoWhereTituloEpc($tituloEpc->id);
+        $row->addCell(null, array('valign' => 'center', 'gridSpan' => 16))->addText("$tituloEpc->titulo", array('bold' => true, 'name' => 'arial', 'size' => 7), array('align' => 'center'));
+        foreach ($lista_descricao as $key => $descricao) {
+            $row = $table->addRow(null, array('cantSplit' => true));
+            $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$descricao->descricao", $fontGhe, array('align' => 'center'));
+        }
+    }
 
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("PARECER TÉCNICO", array('bold' => true, 'size' => 7), array('align' => 'center'));
+
     $row = $table->addRow(null, array('cantSplit' => true));
     $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("
     De acordo com o Art. 191 da CLT – Consolidação das Leis do Trabalho: 
+    ", $fontGhe, array('align' => 'center'));
+    $row = $table->addRow(null, array('cantSplit' => true));
+    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("
     A eliminação ou a neutralização da insalubridade ocorrerá: 
+    ", $fontGhe, array('align' => 'center'));
+    $row = $table->addRow(null, array('cantSplit' => true));
+    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("
     I - Com a adoção de medidas que conservem o ambiente de trabalho dentro dos limites de tolerância; 
+    ", $fontGhe, array('align' => 'center'));
+    $row = $table->addRow(null, array('cantSplit' => true));
+    $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("
     II - Com a utilização de equipamentos de proteção individual ao trabalhador, que diminuam a intensidade do agente agressivo a limites de tolerância. 
     ", $fontGhe, array('align' => 'center'));
 
@@ -374,8 +465,8 @@ foreach ($lista as $ghe) {
     }
 
     $row = $table->addRow(null, array('cantSplit' => true));
-    $row->addCell(null, array('gridSpan' => 4, 'valign' => 'center'))->addText("OBSERVAÇÃO", array('name' => 'arial', 'size' => 7, 'color' => '#ff0000'), array('align' => 'center'));
-    $row->addCell(null, array('gridSpan' => 12, 'valign' => 'center'))->addText("A caracterização descrita acima - neste Parecer - é válida somente, enquanto as condições de trabalho permanecerem com aquelas observadas e informadas durante os levantamento in loco.", $fontGhe, array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 2, 'valign' => 'center'))->addText("OBSERVAÇÃO", array('name' => 'arial', 'size' => 7, 'color' => '#ff0000'), array('align' => 'center'));
+    $row->addCell(null, array('gridSpan' => 14, 'valign' => 'center'))->addText("A caracterização descrita acima - neste Parecer - é válida somente, enquanto as condições de trabalho permanecerem com aquelas observadas e informadas durante os levantamento in loco.", $fontGhe, array('align' => 'center'));
 
     $section->addText("Fonte: Adaptado pelo autor", $fontStyle, $paragraphStyle);
 

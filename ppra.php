@@ -31,7 +31,7 @@
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
                         <form action="word/word.php" method="POST" class="needs-validation formulario" novalidate>
-                            <h2 class="text-center py-4">Cadastro PPRA - 1</h2>
+                            <h2 class="text-center py-4">Cadastro PPRA</h2>
                             <div class="form-group">
                                 <select name="cnpj" class="form-control" required>
                                     <option value="" disabled selected>Selecione uma empresa</option>
@@ -49,7 +49,15 @@
                                     ?>
                                 </select>
                             </div>
-                            
+                            <div class="form-group">
+                                <input class="form-control" name="empregador_nome" placeholder="Digite o nome do empregador" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="empregador_rg" placeholder="Digite o rg do empregador" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="empregador_cpf" placeholder="Digite o cpf do empregador" required>
+                            </div>
                             <div class="form-group">
                                 <div class="input_fields_wrapAgentes">
                                     <button class="add_field_buttonAgentes btn btn-primary btn-sm mb-2">Adicionar campo de Agentes ambientais</button>
@@ -61,7 +69,7 @@
                                             $agentes = new agentes();
                                             $lista = $agentes->selecionarAgentes();
                                             foreach ($lista as $agente) {
-                                                echo '<option value="'.$agente->id.'">'.$agente->agente.'</option>';
+                                                echo '<option value="' . $agente->id . '">' . $agente->agente . '</option>';
                                             }
                                             ?>
                                         </select>
@@ -149,7 +157,7 @@
 
 
 
-<script>
+    <script>
         $(document).ready(function() {
             var max_fields = 20; //maximum input boxes allowed
             var wrapper = $(".input_fields_wrapAgentes"); //Fields wrapper
@@ -161,12 +169,12 @@
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
                     $(wrapper).append('<div class="form-group input-group"><select name="agente[]" class="form-control input-group" required><option value="" selected disabled>Selecione um agente</option><?php
-                        require_once('classes/agentes_ambientais.php');
-                        $agentes = new agentes();
-                        $lista = $agentes->selecionarAgentes();
-                        foreach ($lista as $agente) {
-                            echo '<option value="'.$agente->id.'">'.$agente->agente.'</option>';
-                        }?> ?> </select> <a href="#" class="remove_field input-group-text">Remover</a></div>'); //add input box
+                                                                                                                                                                                                            require_once('classes/agentes_ambientais.php');
+                                                                                                                                                                                                            $agentes = new agentes();
+                                                                                                                                                                                                            $lista = $agentes->selecionarAgentes();
+                                                                                                                                                                                                            foreach ($lista as $agente) {
+                                                                                                                                                                                                                echo '<option value="' . $agente->id . '">' . $agente->agente . '</option>';
+                                                                                                                                                                                                            } ?> ?> </select> <a href="#" class="remove_field input-group-text">Remover</a></div>'); //add input box
                 }
             });
 

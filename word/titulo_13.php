@@ -33,7 +33,7 @@ $myTextElement = $section->addText('Responsável pela Implementação do PPRA:',
 $section->addTextBreak(1);
 
 $myTextElement = $section->addText('_______________________________________________', array('bold' => true, 'name' => 'arial', 'size' => 12), array('lineHeight' => 1, 'alignment' => 'center'));
-$myTextElement = $section->addText('XXXXXXX', array('bold' => true, 'name' => 'arial', 'size' => 12), array('lineHeight' => 1, 'alignment' => 'center'));
+$myTextElement = $section->addText($empregador_nome, array('bold' => true, 'name' => 'arial', 'size' => 12), array('lineHeight' => 1, 'alignment' => 'center'));
 $myTextElement = $section->addText('Empregador', $fontStyle, array('lineHeight' => 1, 'alignment' => 'center'));
-$myTextElement = $section->addText('RG: XXXXXXX', $fontStyle, array('lineHeight' => 1, 'alignment' => 'center'));
-$myTextElement = $section->addText('CPF: XXXXXXX', $fontStyle, array('lineHeight' => 1, 'alignment' => 'center'));
+$myTextElement = $section->addText('RG: ' . $empregador_rg, $fontStyle, array('lineHeight' => 1, 'alignment' => 'center'));
+$myTextElement = $section->addText('CPF: ' . $empregador_cpf, $fontStyle, array('lineHeight' => 1, 'alignment' => 'center'));
