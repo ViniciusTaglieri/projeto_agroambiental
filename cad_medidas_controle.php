@@ -45,21 +45,6 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <textarea type="text" class="form-control" name="ergonomico" placeholder="Para agente ergonomico" required rows="3"></textarea>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="epc" placeholder="epc" required>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="epi" placeholder="epi" required>
-                                <div class="valid-feedback"></div>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label>Insalubridade:</label>
