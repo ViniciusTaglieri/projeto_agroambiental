@@ -30,7 +30,7 @@
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
                         <form action="inserir_epi_epc_local.php" method="POST" class="needs-validation formulario" novalidate>
-                            <h2 class="text-center py-4">Cadastro Epc</h2>
+                            <h2 class="text-center py-4">Cadastro Epi - Epc</h2>
                             <div class="form-group">
                                 <select class="form-control" name="local" required>
                                     <option value="" selected disabled>Selecione um local</option>
@@ -44,7 +44,7 @@
                                     ?>
                                 </select>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Erro</div>
+                                <div class="invalid-feedback">Um local deve ser selecionado</div>
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
@@ -68,8 +68,14 @@
                             <div class="form-group">
                                 <button class="add_field_button btn btn-primary btn-sm mb-2">Adicionar campo de Descrição</button>
                                 <div class="input_fields_wrap">
-                                    <input type="text" class="form-control mb-3" name="descricao[]" placeholder="Digite a descrição" required>
+                                    <input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required>
                                     <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Deverá conter uma descrição</div>
+                                    <select class="form-control mt-3" name="destaque[]" required>
+                                        <option value="0">Selecione o destaque</option>
+                                        <option value="1">Vermelho</option>
+                                        <option value="2">Negrito</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -126,7 +132,21 @@
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<div class="form-group input-group"><input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required><a href="#" class="remove_field input-group-text">Remove</a><div class="valid-feedback"></div></div>');
+
+                    var html = '<div class="mb-3"><hr>';
+                    html += '<div class="form-group input-group">';
+                    html += '<input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required>';
+                    html += '<div class="valid-feedback"></div>';
+                    html += '<div class="invalid-feedback">Deverá conter uma descrição</div></div>';
+                    html += '<select class="form-control mb-3" name="destaque[]" required>';
+                    html += '<option value="0">Selecione o destaque</option>';
+                    html += '<option value="1">Vermelho</option>';
+                    html += '<option value="2">Negrito</option>';
+                    html += '</select>';
+                    html += '<a href="#" class="remove_field input-group-text mb-3">Remove</a></div>';
+
+                    $(wrapper).append(html);
+                    // $(wrapper).append('<div class="mb-3"><div class="form-group input-group"><input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required><div class="valid-feedback"></div></div><select class="form-control" name="destaque[]"><option value="0">Selecione o destaque</option><option value="1">Vermelho</option><option value="2">Negrito</option></select><a href="#" class="remove_field input-group-text">Remove</a></div>');
                 }
             });
 

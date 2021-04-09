@@ -36,12 +36,13 @@ class MedidasLocal
         }
     } //fim do metodo inserirLocal
 
-    public function inserirDescricao($id_titulo, $descricao)
+    public function inserirDescricao($id_titulo, $descricao, $destaque)
     {
         try {
-            $robo = $this->conexao->conectar()->prepare("INSERT INTO descricao_local(id_titulo, descricao) VALUES(?,?);");
+            $robo = $this->conexao->conectar()->prepare("INSERT INTO descricao_local(id_titulo, descricao, destaque) VALUES(?,?,?);");
             $robo->bindParam(1, $id_titulo);
             $robo->bindParam(2, $descricao);
+            $robo->bindParam(3, $destaque);
 
             if ($robo->execute()) {
                 return 'ok';

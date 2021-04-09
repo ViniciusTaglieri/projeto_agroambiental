@@ -53,12 +53,13 @@ class EpiEpc
         }
     } //fim do metodo inserirTituloEpc
 
-    public function inserirDescricaoEpi($id_titulo_epi, $descricao)
+    public function inserirDescricaoEpi($id_titulo_epi, $descricao, $destaque)
     {
         try {
-            $robo = $this->conexao->conectar()->prepare("INSERT INTO descricao_epi_local(id_titulo_epi, descricao) VALUES(?,?);");
+            $robo = $this->conexao->conectar()->prepare("INSERT INTO descricao_epi_local(id_titulo_epi, descricao, destaque) VALUES(?,?,?);");
             $robo->bindParam(1, $id_titulo_epi);
             $robo->bindParam(2, $descricao);
+            $robo->bindParam(3, $destaque);
 
             if ($robo->execute()) {
                 return 'ok';
@@ -70,12 +71,13 @@ class EpiEpc
         }
     } //fim do metodo inserirDescricaoEpi
 
-    public function inserirDescricaoEpc($id_titulo_epc, $descricao)
+    public function inserirDescricaoEpc($id_titulo_epc, $descricao, $destaque)
     {
         try {
-            $robo = $this->conexao->conectar()->prepare("INSERT INTO descricao_epc_local(id_titulo_epc, descricao) VALUES(?,?);");
+            $robo = $this->conexao->conectar()->prepare("INSERT INTO descricao_epc_local(id_titulo_epc, descricao,destaque) VALUES(?,?,?);");
             $robo->bindParam(1, $id_titulo_epc);
             $robo->bindParam(2, $descricao);
+            $robo->bindParam(3, $destaque);
 
             if ($robo->execute()) {
                 return 'ok';

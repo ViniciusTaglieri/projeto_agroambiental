@@ -85,6 +85,8 @@ foreach ($lista as $ghe) {
         $row->addCell(null, array('gridSpan' => 6, 'valign' => 'center'))->addText("Descrição Detalhada da Função: $funcao->descricao Responsabilidades do Cargo: $funcao_ghe->resp_cargo", $fontGhe, array('align' => 'center'));
     }
 
+
+
     //inventario de riscos
     $section->addTextBreak();
     $table = $section->addTable(array('borderSize' => 6, 'borderColor' => '000000', 'alignment' => 'center'));
@@ -175,7 +177,7 @@ foreach ($lista as $ghe) {
                 $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("$quimico->fonte_geradora", $fontGhe, array('align' => 'center'));
             } else {
                 if ($i == 0) {
-                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Químico", $fontGhe, array('align' => 'center'));
                 } else {
                     $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
                 }
@@ -208,12 +210,12 @@ foreach ($lista as $ghe) {
             // biologico
             $row = $table->addRow(null, array('cantSplit' => true));
             if ($biologico->agente == NULL) {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Químico", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Biológico", $fontGhe, array('align' => 'center'));
                 $row->addCell(null, array('valign' => 'center'))->addText("Ausência de Fator de Risco", $fontGhe, array('align' => 'center'));
                 $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("$biologico->fonte_geradora", $fontGhe, array('align' => 'center'));
             } else {
                 if ($i == 0) {
-                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Biológico", $fontGhe, array('align' => 'center'));
                 } else {
                     $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
                 }
@@ -246,12 +248,12 @@ foreach ($lista as $ghe) {
             // ergonomico
             $row = $table->addRow(null, array('cantSplit' => true));
             if ($ergonomico->agente == NULL) {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Químico", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Ergonômico", $fontGhe, array('align' => 'center'));
                 $row->addCell(null, array('valign' => 'center'))->addText("Ausência de Fator de Risco", $fontGhe, array('align' => 'center'));
                 $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("$ergonomico->fonte_geradora", $fontGhe, array('align' => 'center'));
             } else {
                 if ($i == 0) {
-                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Ergonômico", $fontGhe, array('align' => 'center'));
                 } else {
                     $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
                 }
@@ -284,12 +286,12 @@ foreach ($lista as $ghe) {
             // mecanicos
             $row = $table->addRow(null, array('cantSplit' => true));
             if ($mecanico->agente == NULL) {
-                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Químico", $fontGhe, array('align' => 'center'));
+                $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Mecânico", $fontGhe, array('align' => 'center'));
                 $row->addCell(null, array('valign' => 'center'))->addText("Ausência de Fator de Risco", $fontGhe, array('align' => 'center'));
                 $row->addCell(null, array('valign' => 'center', 'gridSpan' => 7))->addText("$mecanico->fonte_geradora", $fontGhe, array('align' => 'center'));
             } else {
                 if ($i == 0) {
-                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Físico", $fontGhe, array('align' => 'center'));
+                    $row->addCell(null, array('valign' => 'center', 'vMerge' => 'restart'))->addText("Mecânico", $fontGhe, array('align' => 'center'));
                 } else {
                     $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue'));
                 }
@@ -314,6 +316,8 @@ foreach ($lista as $ghe) {
             $row->addCell(null, array('valign' => 'center'))->addText("$mecanico->codigo", $fontGhe, array('align' => 'center'));
         }
     }
+
+
 
     //classificação do indice de exposição
     $row = $table->addRow(null, array('cantSplit' => true));
@@ -364,6 +368,7 @@ foreach ($lista as $ghe) {
     $row->addCell(null, array('gridSpan' => 4, 'valign' => 'center'))->addText("ATENÇÃO NECESSÁRIA (6 a 7)", $fontGhe, array('align' => 'center'));
     $row->addCell(null, array('gridSpan' => 4, 'valign' => 'center'))->addText("ATENÇÃO IMEDIATA (8 a 9)", $fontGhe, array('align' => 'center'));
 
+
     $section->addTextBreak();
 
     //medidas de controle recomendadas
@@ -382,7 +387,14 @@ foreach ($lista as $ghe) {
             } else {
                 $row->addCell(null, array('valign' => 'center', 'vMerge' => 'continue', 'gridSpan' => 2));
             }
-            $row->addCell(null, array('gridSpan' => 14, 'valign' => 'center'))->addText("$descricao->descricao", $fontGhe, array('align' => 'center'));
+            if ($descricao->destaque == 1) {
+                $fontDescricao = array('size' => 7, 'color' => 'FF0000');
+            } else if ($descricao->destaque == 2) {
+                $fontDescricao = array('size' => 7, 'bold' => true);
+            } else {
+                $fontDescricao = array('size' => 7);
+            }
+            $row->addCell(null, array('gridSpan' => 14, 'valign' => 'center'))->addText("$descricao->descricao", $fontDescricao, array('align' => 'center'));
         }
     }
 
@@ -397,7 +409,14 @@ foreach ($lista as $ghe) {
         $row->addCell(null, array('valign' => 'center', 'gridSpan' => 16))->addText("$tituloEpi->titulo", array('bold' => true, 'name' => 'arial', 'size' => 7), array('align' => 'center'));
         foreach ($lista_descricao as $key => $descricao) {
             $row = $table->addRow(null, array('cantSplit' => true));
-            $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$descricao->descricao", $fontGhe, array('align' => 'center'));
+            if ($descricao->destaque == 1) {
+                $fontDescricao = array('size' => 7, 'color' => 'FF0000');
+            } else if ($descricao->destaque == 2) {
+                $fontDescricao = array('size' => 7, 'bold' => true);
+            } else {
+                $fontDescricao = array('size' => 7);
+            }
+            $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$descricao->descricao", $fontDescricao, array('align' => 'center'));
         }
     }
 
@@ -411,7 +430,14 @@ foreach ($lista as $ghe) {
         $row->addCell(null, array('valign' => 'center', 'gridSpan' => 16))->addText("$tituloEpc->titulo", array('bold' => true, 'name' => 'arial', 'size' => 7), array('align' => 'center'));
         foreach ($lista_descricao as $key => $descricao) {
             $row = $table->addRow(null, array('cantSplit' => true));
-            $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$descricao->descricao", $fontGhe, array('align' => 'center'));
+            if ($descricao->destaque == 1) {
+                $fontDescricao = array('size' => 7, 'color' => 'FF0000');
+            } else if ($descricao->destaque == 2) {
+                $fontDescricao = array('size' => 7, 'bold' => true);
+            } else {
+                $fontDescricao = array('size' => 7);
+            }
+            $row->addCell(null, array('gridSpan' => 16, 'valign' => 'center'))->addText("$descricao->descricao", $fontDescricao, array('align' => 'center'));
         }
     }
 

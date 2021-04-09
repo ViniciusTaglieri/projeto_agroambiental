@@ -3,8 +3,8 @@
 $local = $_POST['local'];
 $titulo = $_POST['titulo'];
 $descricoes = $_POST['descricao'];
+$destaques = $_POST['destaque'];
 $tipo = $_POST['tipo'];
-
 
 if ($tipo == 0) {
     // epi
@@ -17,8 +17,8 @@ if ($tipo == 0) {
     //descrição
     $lista_titulo_epi = $obj_epi->selecionarUltimoTituloEpi();
     foreach ($lista_titulo_epi as $ultimoTituloEpi) {
-        foreach ($descricoes as $descricao) {
-            $obj_epi->inserirDescricaoEpi($ultimoTituloEpi->id, $descricao);
+        foreach ($descricoes as $key => $descricao) {
+            $obj_epi->inserirDescricaoEpi($ultimoTituloEpi->id, $descricao, $destaques[$key]);
         }
     }
 
@@ -34,8 +34,8 @@ if ($tipo == 0) {
     //descrição
     $lista_titulo_epc = $obj_epc->selecionarUltimoTituloEpi();
     foreach ($lista_titulo_epc as $ultimoTituloEpc) {
-        foreach ($descricoes as $descricao) {
-            $obj_epc->inserirDescricaoEpc($ultimoTituloEpc->id, $descricao);
+        foreach ($descricoes as $key => $descricao) {
+            $obj_epc->inserirDescricaoEpc($ultimoTituloEpc->id, $descricao, $destaques[$key]);
         }
     }
 

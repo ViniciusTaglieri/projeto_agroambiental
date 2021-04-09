@@ -54,8 +54,14 @@
                             <div class="form-group">
                                 <button class="add_field_button btn btn-primary btn-sm mb-2">Adicionar campo de Descrição</button>
                                 <div class="input_fields_wrap">
-                                    <input type="text" class="form-control mb-3" name="descricao[]" placeholder="Digite a descrição" required>
+                                    <input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required>
                                     <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Deverá conter uma descrição</div>
+                                    <select class="form-control mt-3" name="destaque[]" required>
+                                        <option value="0">Selecione o destaque</option>
+                                        <option value="1">Vermelho</option>
+                                        <option value="2">Negrito</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -112,7 +118,21 @@
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<div class="form-group input-group"><input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required><a href="#" class="remove_field input-group-text">Remove</a><div class="valid-feedback"></div></div>');
+
+                    var html = '<div class="mb-3"><hr>';
+                    html += '<div class="form-group input-group">';
+                    html += '<input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required>';
+                    html += '<div class="valid-feedback"></div>';
+                    html += '<div class="invalid-feedback">Deverá conter uma descrição</div></div>';
+                    html += '<select class="form-control mb-3" name="destaque[]" required>';
+                    html += '<option value="0">Selecione o destaque</option>';
+                    html += '<option value="1">Vermelho</option>';
+                    html += '<option value="2">Negrito</option>';
+                    html += '</select>';
+                    html += '<a href="#" class="remove_field input-group-text mb-3">Remove</a></div>';
+
+                    $(wrapper).append(html);
+                    // $(wrapper).append('<div class="mb-3"><div class="form-group input-group"><input type="text" class="form-control" name="descricao[]" placeholder="Digite a descrição" required><div class="valid-feedback"></div></div><label class="user-select-none"><input type = "checkbox" name = "destaque[]" value = "1">Destaque</label><a href="#" class = "remove_field input-group-text">Remove<a></div >');
                 }
             });
 
