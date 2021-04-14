@@ -13,6 +13,10 @@ $empregador_cpf = $_POST['empregador_cpf'];
 
 
 //Funções para receber dados do BD
+require_once('../classes/plano_acao.php');
+$obj_plano_acao = new PlanoAcao();
+
+//Funções para receber dados do BD
 require_once('../classes/epi_epc_local.php');
 $obj_epi_epc = new EpiEpc();
 

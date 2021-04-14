@@ -17,7 +17,7 @@ if (!(($_SESSION['usuario']) || ($_SESSION['senha']))) {
                 </li>
                 <li class="nav-item active mr-1 my-1">
                     <div class="dropdown">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-secondary dropdown-toggle text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cadastrar
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
@@ -30,7 +30,7 @@ if (!(($_SESSION['usuario']) || ($_SESSION['senha']))) {
                 </li>
                 <li class="nav-item active mr-1 my-1">
                     <div class="dropdown">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-secondary dropdown-toggle text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Visualizar
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
