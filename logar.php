@@ -12,7 +12,7 @@ if($lista){
 	foreach($lista as $registro){
 		$_SESSION['usuario'] = $usuario;
 		$_SESSION['senha'] = $senha;
-		$_SESSION['tipo_usuario'] = $registro->tipo_usuario; 
+		$_SESSION['tipo_usuario'] = $registro->func; 
 		header('location:index.php');
 	}
 }else{ 
