@@ -42,7 +42,7 @@
                             <div class="invalid-feedback">Deverá conter até 60 caracteres</div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="senhaEnvia" placeholder="Digite a senha do email que enviará" maxlength="40" value="<?=$registro->senhaEnvia?>" pattern="{1,40}" required >
+                            <input type="password" class="form-control" name="senhaEnvia" placeholder="Digite a senha do email que enviará" maxlength="40" value="<?=$registro->senhaEnvia?>" pattern="{1,40}" required >
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Deverá conter até 40 caracteres</div>
                         </div>
