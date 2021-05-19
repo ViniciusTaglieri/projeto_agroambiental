@@ -38,12 +38,12 @@
                     <form action="update_subcategoria.php" method="POST" class="formulario">
                     <h2 class="text-center py-4">Alterar subcategoria</h2>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nome" placeholder="Digite o nome do serviço" maxlength="40" value="<?=$registro->nome?>" pattern="[a-zA-Z0-9\ w]{0,40}" required >
+                            <input type="text" class="form-control" name="nome" placeholder="Digite o nome da subcategoria" maxlength="40" value="<?=$registro->nome?>" pattern="[a-zA-Z0-9\ w]{0,40}" required >
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Deverá conter até 40 caracteres</div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="descricao" placeholder="Digite o nome do serviço" maxlength="255" value="<?=$registro->descricao?>" pattern="[a-zA-Z0-9\ w]{0,255}" required >
+                            <input type="text" class="form-control" name="descricao" placeholder="Digite a descrição da subcategoria" maxlength="255" value="<?=$registro->descricao?>" pattern="[a-zA-Z0-9\ w]{0,255}" required >
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Deverá conter até 255 caracteres</div>
                         </div>

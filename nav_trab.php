@@ -60,6 +60,9 @@ if (!(($_SESSION['usuario']) || ($_SESSION['senha']))) {
                             </ul>
                         </li>
                         <li class="dropdown-item dropdown-submenu">
+                            <a class="text-dark" href="cad_empresa.php">Empresa</a>
+                        </li>
+                        <li class="dropdown-item dropdown-submenu">
                             <a class="text-dark" href="cad_subcategoria.php">Subcategoria</a>
                         </li>
                         <li class="dropdown-item dropdown-submenu">
@@ -67,9 +70,6 @@ if (!(($_SESSION['usuario']) || ($_SESSION['senha']))) {
                         </li>
                         <li class="dropdown-item dropdown-submenu">
                             <a class="text-dark" href="cad_carga_horaria.php">Carga horária</a>
-                        </li>
-                        <li class="dropdown-item dropdown-submenu">
-                            <a class="text-dark" href="cad_subcategoria.php">Subcategoria</a>
                         </li>
                         <li class="dropdown-item dropdown-submenu">
                             <a class="text-dark" href="cad_plano_acao.php">Plano de ação</a>

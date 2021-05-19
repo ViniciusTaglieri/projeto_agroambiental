@@ -31,12 +31,12 @@
                     <form action="inserir_subcategoria.php" method="POST" class="needs-validation formulario" novalidate>
                         <h2 class="text-center py-4">Cadastro Subcategoria</h2>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nome" placeholder="Digite o tipo do documento" maxlength="40" pattern="[A-Za-z0-9\ w]{0,40}" required>
+                            <input type="text" class="form-control" name="nome" placeholder="Digite o nome da subcategoria" maxlength="40" pattern="[A-Za-z0-9\ w]{0,40}" required>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Deverá conter até 40 caracteres</div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="descricao" placeholder="Digite a descrição do epi" maxlength="255" pattern="[A-Za-z0-9\ w]{0,255}" required>
+                            <input type="text" class="form-control" name="descricao" placeholder="Digite a descrição da subcategoria" maxlength="255" pattern="[A-Za-z0-9\ w]{0,255}" required>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Deverá conter até 255 caracteres</div>
                         </div>

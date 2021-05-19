@@ -1,6 +1,6 @@
 <?php
 require_once("conexao.php");
-class setor
+class Setor
 {
     private $conexao;
 

@@ -48,7 +48,7 @@ if ($_SESSION['tipo_usuario'] == "func"){
                 <tbody>
                 <?php
                     require_once("classes/conexao.php");
-                    require_once("classes/Setor.php");
+                    require_once("classes/setor.php");
                     $objeto = new Setor();
                     $lista = $objeto->selecionarSetor();
                     foreach($lista as $registro)
