@@ -118,7 +118,7 @@ if (!(($_SESSION['usuario']) || ($_SESSION['senha']))) {
                             </ul>
                         </li>
                         <li class="dropdown-item dropdown-submenu">
-                            <a class="text-dark" href="exibir_subcategoria.php">Empresa</a>
+                            <a class="text-dark" href="exibir_empresas.php">Empresa</a>
                         </li>
                         <li class="dropdown-item dropdown-submenu">
                             <a class="text-dark" href="exibir_subcategoria.php">Subcategoria</a>
